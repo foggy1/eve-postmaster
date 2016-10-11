@@ -1,0 +1,34 @@
+Here is what works as generated from postman.
+
+The url= can be used to have things linked such as corp ads, players etc in the template generated from the POST request. recipients is an array of objects like {"id": charID_of_recipient}. 
+
+
+POST /characters/CHAR ID/ui/openwindow/newmail/ HTTP/1.1
+Host: crest-tq.eveonline.com
+Content-Type: application/vnd.ccp.eve.NewMail-v1+json
+Authorization: bearer YOUR_TOKEN
+Cache-Control: no-cache
+Postman-Token: ced2dbde-453f-a80b-8757-f288799cac5c
+
+{
+"subject": "Hello",
+"body": "< url=recruitmentAd:98430171//118808 >SeckDeck Industries - The best of the best < /url >",
+"recipients": [{"id": 2047918291}]
+}
+
+
+current token: eNa8RbS0BbUN8CZnMmz7IVepV-ZHE9MCUHXz-imkRpjeMWBzYtst0EFbwee697-jnHlUbbdxx71mct1WE13m7g2
+
+layne id 1536904870
+
+curl -H "Host: crest-tq.eveonline.com" -H "Content-Type: application/json" -H "Authorization: Bearer Na8RbS0BbUN8CZnMmz7IVepV-ZHE9MCUHXz-imkRpjeMWBzYtst0EFbwee697-jnHlUbbdxx71mct1WE13m7g2" -X POST -d '{"subject": "test", "body": "test", "recipients": [{"id": 1536904870}]}'   
+
+BPUJJIvzRtehowePAG3FByQkEXsasWDSUrGpSK_gheGPewFCyWkuFCkJeJ2s9ko3jbI1S0Kh48-dVm1be79Jow2
+
+SUCCESSFUL CURL REQUEST: 
+
+curl -H "Authorization: Bearer BPUJJIvzRtehowePAG3FByQkEXsasWDSUrGpSK_gheGPewFCyWkuFCkJeJ2s9ko3jbI1S0Kh48-dVm1be79Jow2" 
+-H "Host: crest-tq.eveonline.com" 
+-H "Content-Type: application/json"  
+-X POST https://crest-tq.eveonline.com/characters/1536904870/ui/openwindow/newmail/ 
+-d '{"subject": "test", "body": "test", "recipients": [{"id": 1536904870}]}' -g
