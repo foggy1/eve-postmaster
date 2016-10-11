@@ -1,24 +1,7 @@
-# README
+# eve-postmaster
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##Messin' with API's
 
-Things you may want to cover:
+Eve Postmaster is a simple little remoteUI site that auths a user with their Eve Online login and allows them to populate the mail client in game with whatever they type.  The goal is to eventually get a web client that is at least up to snuff with the in-game evemail editor.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Things are still very much in the cleanup phase, but the basic functionality is there.  Thanks to all folks in the Eve dev community who have contributed to the third-party docs and a thriving forum presence.
