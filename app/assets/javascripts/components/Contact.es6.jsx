@@ -22,7 +22,7 @@ class Contact extends React.Component {
     if (this.props.data.status != "list-group-item-success") {
       this.props.data.status = "list-group-item-success"
     } else {this.colorify()}
-    this.forceUpdate()
+      this.props.contactClicked(this.props.data.name)
   }
 
   render() {

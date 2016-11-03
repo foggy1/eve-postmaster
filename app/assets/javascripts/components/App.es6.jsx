@@ -2,10 +2,26 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      contacts: []
+      contacts: [],
+      recipients: [],
+      remove: ""
     };
+    this.changeRecip = this.changeRecip.bind(this)
   }
 
+  changeRecip(recipient) {
+    var isRecipient = function(name) {
+      return recipient === name
+    }
+    var present = this.state.recipients.findIndex(isRecipient)
+    if (present === -1) {
+      this.setState({recipients: [...this.state.recipients, recipient]})
+    } else {
+      this.setState({recipients: this.state.recipients.splice(present, 1)},
+      this.setState({remove: recipient})
+        )
+    }
+  }
 
   componentDidMount() {
     if (this.props.isAuthorized) {
@@ -19,7 +35,7 @@ class App extends React.Component {
     return(
       <div className="row">
         <MailForm />
-        <ContactList data={this.state.contacts}/>
+        <ContactList data={this.state.contacts} updateTo={this.changeRecip}/>
       </div>
       )
   }
