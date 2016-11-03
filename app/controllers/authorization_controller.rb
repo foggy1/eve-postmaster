@@ -3,10 +3,12 @@ class AuthorizationController < ApplicationController
   CLIENT_SECRET = Rails.application.secrets.eve_client_secret
   include Authorization
   def redirect
+    byebug
     base_url = 'https://login.eveonline.com/oauth/authorize/?'
     params = {
       response_type: 'code',
-      redirect_uri: 'https://eve-postmaster.herokuapp.com/callback',
+      # redirect_uri: 'https://eve-postmaster.herokuapp.com/callback',
+      redirect_uri: 'http://localhost:3000/callback',
       client_id: CLIENT_ID,
       scope: 'characterAccountRead characterAssetsRead characterClonesRead characterContactsRead characterContactsWrite characterFittingsRead characterFittingsWrite characterKillsRead characterLocationRead characterMarketOrdersRead characterNavigationWrite corporationMembersRead remoteClientUI characterMailRead',
       state: 'idk123'
