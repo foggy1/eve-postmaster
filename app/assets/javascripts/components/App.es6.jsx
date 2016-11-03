@@ -19,7 +19,7 @@ class App extends React.Component {
     return(
       <div className="row">
         <MailForm />
-        <ContactList />
+        <ContactList data={this.state.contacts}/>
       </div>
       )
   }
