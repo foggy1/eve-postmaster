@@ -1,6 +1,16 @@
 class MailsController < ApplicationController
   # for setup
   def new
+    access_token = session[:tokens]["access_token"]
+    the_headers = {
+      "Authorization" => "Bearer #{access_token}",
+      "Host" => "crest-tq.eveonline.com",
+      "Content-Type" => "application/json"
+    }
+    response = Unirest.get "https://crest-tq.eveonline.com/characters/#{session[:char_id]}/contacts/",
+               headers:the_headers
+    @contacts = response.body["items"].map { |item| { name: item["character"]["name"], id: item["character"]["id_str"] } if item["character"] }.select { |item| item }
+
     render 'mails/new'
   end
 
