@@ -1,5 +1,6 @@
 class MailForm extends React.Component {
   render() {
+    // Move Submit listener down this component to allow App to handle delegation
     return(
         <div className="row">
           <form className="col-md-6" ref="newMailForm" onSubmit={this.getIDs}>
