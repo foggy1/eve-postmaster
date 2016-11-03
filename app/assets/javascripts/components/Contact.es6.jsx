@@ -1,11 +1,11 @@
 class Contact extends React.Component {
 
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.data.standing > 0) {
-      this.props.status = "list-group-item-info"
+      this.props.data.status = "list-group-item-info"
     } else if (this.props.data.standing < 0) {
-      this.props.status = "list-group-item-danger"
-    } else { this.props.status = "list-group-item-warning"}
+      this.props.data.status = "list-group-item-danger"
+    } else { this.props.data.status = "list-group-item-warning"}
   }
 
   render() {
