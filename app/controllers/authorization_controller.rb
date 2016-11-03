@@ -35,6 +35,6 @@ class AuthorizationController < ApplicationController
     session[:tokens] = @tokens
     session[:char_id] = get_char_id
 
-    render 'mails/new'
+    redirect_to '/mails/new'
   end
 end
