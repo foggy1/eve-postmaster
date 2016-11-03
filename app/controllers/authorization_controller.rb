@@ -1,15 +1,14 @@
 class AuthorizationController < ApplicationController
-  CLIENT_ID = Rails.application.secrets.eve_client_id
-  CLIENT_SECRET = Rails.application.secrets.eve_client_secret
+  # CLIENT_ID = Rails.application.secrets.eve_client_id
+  # CLIENT_SECRET = Rails.application.secrets.eve_client_secret
   include Authorization
   def redirect
-    byebug
     base_url = 'https://login.eveonline.com/oauth/authorize/?'
     params = {
       response_type: 'code',
       # redirect_uri: 'https://eve-postmaster.herokuapp.com/callback',
       redirect_uri: 'http://localhost:3000/callback',
-      client_id: CLIENT_ID,
+      client_id: Rails.application.secrets.eve_client_id,
       scope: 'characterAccountRead characterAssetsRead characterClonesRead characterContactsRead characterContactsWrite characterFittingsRead characterFittingsWrite characterKillsRead characterLocationRead characterMarketOrdersRead characterNavigationWrite corporationMembersRead remoteClientUI characterMailRead',
       state: 'idk123'
     }.to_query
@@ -17,7 +16,7 @@ class AuthorizationController < ApplicationController
   end
 
   def access
-    auth_head = Base64.encode64("#{CLIENT_ID}:#{CLIENT_SECRET}").delete("\n")
+    auth_head = Base64.encode64("#{Rails.application.secrets.eve_client_id}:#{Rails.application.secrets.eve_client_secret}").delete("\n")
     headers = { "Authorization" => "Basic #{auth_head}",
                 "Content-Type" =>  "application/x-www-form-urlencoded",
                 "Host" => "login.eveonline.com"
@@ -33,7 +32,6 @@ class AuthorizationController < ApplicationController
       access_token: response.body["access_token"],
       refresh_token: response.body["refresh_token"]
     }
-
     session[:tokens] = @tokens
     session[:char_id] = get_char_id
 
