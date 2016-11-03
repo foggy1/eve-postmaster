@@ -11,7 +11,8 @@ class MailsController < ApplicationController
     }
     response = Unirest.get "https://crest-tq.eveonline.com/characters/#{session[:char_id]}/contacts/",
                headers:the_headers
-    @contacts = response.body["items"].map { |item| { name: item["character"]["name"], id: item["character"]["id_str"] } if item["character"] }.select { |item| item }
+    @contacts = response.body["items"].map { |item| { name: item["character"]["name"], id: item["character"]["id_str"], standing: item["standing"] } if item["character"] }.select { |item| item }
+    
 
     render 'mails/new'
   end
