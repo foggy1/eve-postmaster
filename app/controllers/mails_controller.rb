@@ -2,6 +2,7 @@ class MailsController < ApplicationController
   # for setup
   def new
     access_token = session[:tokens]["access_token"]
+    # TODO: redirect user here if tokens are invalid, don't pass auth to clientside
     the_headers = {
       "Authorization" => "Bearer #{access_token}",
       "Host" => "crest-tq.eveonline.com",
