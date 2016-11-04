@@ -51,6 +51,8 @@ class MailForm extends React.Component {
     // Move Submit listener down this component to allow App to handle delegation
     return(
         <div className="col-md-6">
+          <h1 class="h1 text-center">New Mail</h1>
+
           <form ref="newMailForm" onSubmit={this.getIDs}>
             <div className="form-group">
               <label htmlFor="recipients">Contacts: (<em>select on right</em>)</label>
@@ -69,7 +71,7 @@ class MailForm extends React.Component {
               <textarea ref="bodyBox" className="form-control" name="body" rows="6"></textarea>
             </div>
             <div className="text-center">
-              <input className="btn btn-default" type="submit" value="Send" />
+              <input className="btn btn-default" type="submit" value="Populate" />
             </div>
           </form>
         </div>
