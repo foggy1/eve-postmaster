@@ -44,6 +44,7 @@ class MailForm extends React.Component {
       theForm.refs.recipBox.value = '';
       theForm.refs.subjectBox.value = '';
       theForm.refs.bodyBox.value = '';
+      this.props.submitDone(true)
     })  
   }
   render() {

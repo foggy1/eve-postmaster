@@ -4,9 +4,11 @@ class App extends React.Component {
     this.state = {
       contacts: [],
       recipients: [],
-      remove: ""
+      remove: "",
+      submitted: false
     };
     this.changeRecip = this.changeRecip.bind(this)
+    this.handleContacts = this.handleContacts.bind(this)
   }
 
   changeRecip(recipient) {
@@ -23,6 +25,10 @@ class App extends React.Component {
     }
   }
 
+  handleContacts(bool) {
+    this.setState({recipients: []}, this.setState({submitted: bool}))
+  }
+
   componentDidMount() {
     if (this.props.isAuthorized) {
       localStorage.access_token = this.props.tokens.access_token;
@@ -34,8 +40,8 @@ class App extends React.Component {
   render() {
     return(
       <div className="row">
-        <MailForm data={this.state.recipients} />
-        <ContactList data={this.state.contacts} updateTo={this.changeRecip} />
+        <MailForm data={this.state.recipients} submitDone={this.handleContacts}/>
+        <ContactList data={this.state.contacts} updateTo={this.changeRecip} submitStatus={this.state.submitted} />
       </div>
       )
   }

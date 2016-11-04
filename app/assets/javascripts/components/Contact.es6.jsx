@@ -17,6 +17,12 @@ class Contact extends React.Component {
     this.colorify();
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.submit) {
+      debugger;
+    }
+  }
+
   handleClick(e) {
     e.preventDefault();
     if (this.props.data.status != "list-group-item-success") {
