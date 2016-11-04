@@ -19,7 +19,8 @@ class Contact extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.submit) {
-      debugger;
+      this.colorify();
+      this.props.contactClicked(false)
     }
   }
 

@@ -8,19 +8,16 @@ class ContactList extends React.Component {
     this.props.updateTo(recipient)
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.submitStatus) {
-      this.props.colorIt = true
-      debugger;
-      this.forceUpdate();
-    } else { this.props.colorIt = false }
-  }
+
   render() {
     let contacts = this.props.data
+    if (this.props.submitStatus) { 
+      var submission = true 
+    } else { var submission = false }
     return(
       <div className="list-group col-md-4 col-md-offset-2">
         {contacts.map((contact, i) =>
-          <Contact key={i} data={contact} contactClicked={this.updateRecip} submit={this.props.colorIt} />
+          <Contact key={i} data={contact} contactClicked={this.updateRecip} submit={submission} />
         )}
       </div>
       )

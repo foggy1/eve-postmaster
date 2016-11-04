@@ -12,6 +12,10 @@ class App extends React.Component {
   }
 
   changeRecip(recipient) {
+    if (!recipient) { 
+      this.setState({submitted: false})
+      return null
+    }
     var isRecipient = function(name) {
       return recipient === name
     }
@@ -23,6 +27,7 @@ class App extends React.Component {
       clone.splice(present, 1)
       this.setState({recipients: clone})
     }
+
   }
 
   handleContacts(bool) {
