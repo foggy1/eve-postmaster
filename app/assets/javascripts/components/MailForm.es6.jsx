@@ -5,10 +5,15 @@ class MailForm extends React.Component {
     this.getIDs = this.getIDs.bind(this)
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.refs.contactBox.value = nextProps.data.join(',')
+    
+  }
+
   getIDs(e) {
     e.preventDefault();
     var params = {
-      "names": this.refs.recipBox.value
+      "names": this.refs.recipBox.value + ',' + this.refs.contactBox.value
     }
     $.ajax({
       method: 'get',
@@ -35,6 +40,7 @@ class MailForm extends React.Component {
       data: parameters
     })
     .done(response => {
+      theForm.refs.contactBox.value = ''
       theForm.refs.recipBox.value = '';
       theForm.refs.subjectBox.value = '';
       theForm.refs.bodyBox.value = '';
@@ -46,7 +52,11 @@ class MailForm extends React.Component {
         <div className="col-md-6">
           <form ref="newMailForm" onSubmit={this.getIDs}>
             <div className="form-group">
-              <label htmlFor="recipients">To:</label>
+              <label htmlFor="recipients">Contacts: (<em>select on right</em>)</label>
+              <input ref="contactBox" className="form-control" type="text" name="recipients" />
+            </div>
+                        <div className="form-group">
+              <label htmlFor="recipients">Other recipients: (<em>separate names with commas only</em>)</label>
               <input ref="recipBox" className="form-control" type="text" name="recipients" />
             </div>
             <div className ="form-group">

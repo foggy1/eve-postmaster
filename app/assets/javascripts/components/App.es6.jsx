@@ -17,9 +17,9 @@ class App extends React.Component {
     if (present === -1) {
       this.setState({recipients: [...this.state.recipients, recipient]})
     } else {
-      this.setState({recipients: this.state.recipients.splice(present, 1)},
-      this.setState({remove: recipient})
-        )
+      var clone = this.state.recipients
+      clone.splice(present, 1)
+      this.setState({recipients: clone})
     }
   }
 
@@ -34,8 +34,8 @@ class App extends React.Component {
   render() {
     return(
       <div className="row">
-        <MailForm />
-        <ContactList data={this.state.contacts} updateTo={this.changeRecip}/>
+        <MailForm data={this.state.recipients} />
+        <ContactList data={this.state.contacts} updateTo={this.changeRecip} />
       </div>
       )
   }
