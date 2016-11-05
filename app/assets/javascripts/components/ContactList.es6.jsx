@@ -14,6 +14,7 @@ class ContactList extends React.Component {
     if (this.props.submitStatus) { 
       var submission = true 
     } else { var submission = false }
+    
     return(
       <div className="list-group col-md-4 col-md-offset-2">
         <h1 class="h1 text-center">Contacts</h1>
