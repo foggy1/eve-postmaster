@@ -2,7 +2,8 @@ class MailsController < ApplicationController
   # for setup
   def new
 
-    access_token = session[:tokens]["access_token"] || not_found
+    not_found unless session[:tokens]
+    access_token = session[:tokens]["access_token"]
     the_headers = {
       "Authorization" => "Bearer #{access_token}",
       "Host" => "crest-tq.eveonline.com",
