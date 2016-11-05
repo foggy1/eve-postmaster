@@ -9,7 +9,7 @@ class AuthorizationController < ApplicationController
       redirect_uri: 'https://eve-postmaster.herokuapp.com/callback',
       # redirect_uri: 'http://localhost:3000/callback',
       client_id: Rails.application.secrets.eve_client_id,
-      scope: 'characterAccountRead characterAssetsRead characterClonesRead characterContactsRead characterContactsWrite characterFittingsRead characterFittingsWrite characterKillsRead characterLocationRead characterMarketOrdersRead characterNavigationWrite corporationMembersRead remoteClientUI characterMailRead',
+      scope: 'characterContactsRead remoteClientUI',
       state: 'idk123'
     }.to_query
     redirect_to base_url + params
