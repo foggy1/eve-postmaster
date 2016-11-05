@@ -2,10 +2,7 @@ class MailsController < ApplicationController
   # for setup
   def new
 
-    access_token = session[:tokens]["access_token"]
-    if !access_token
-       raise ActionController::RoutingError.new('Not Found')
-    end
+    access_token = session[:tokens]["access_token"] || not_found
     the_headers = {
       "Authorization" => "Bearer #{access_token}",
       "Host" => "crest-tq.eveonline.com",
