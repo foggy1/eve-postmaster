@@ -15,7 +15,7 @@ class ContactList extends React.Component {
       var submission = true 
     } else { var submission = false }
     return(
-      <div className="list-group col-md-4 col-md-offset-2">
+      <div className="list-group col-md-4 text-center">
         <h1 class="h1 text-center">Contacts</h1>
         {contacts.map((contact, i) =>
           <Contact key={i} data={contact} contactClicked={this.updateRecip} submit={submission} />
