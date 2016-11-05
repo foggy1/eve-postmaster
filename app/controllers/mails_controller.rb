@@ -3,7 +3,9 @@ class MailsController < ApplicationController
   def new
 
     access_token = session[:tokens]["access_token"]
-    # TODO: redirect user here if tokens are invalid, don't pass auth to clientside
+    if !access_token
+       raise ActionController::RoutingError.new('Not Found')
+    end
     the_headers = {
       "Authorization" => "Bearer #{access_token}",
       "Host" => "crest-tq.eveonline.com",
