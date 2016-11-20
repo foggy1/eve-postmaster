@@ -4,6 +4,7 @@ class MailsController < ApplicationController
   def new
     not_found unless session[:tokens]
     @contacts = scrub_contacts(get_contacts)
+    @corp = session[:corp]
     render 'mails/new'
   end
 

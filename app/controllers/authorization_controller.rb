@@ -1,6 +1,6 @@
 class AuthorizationController < ApplicationController
   include Authorization
-  
+
   def redirect
     redirect_to get_redirect
   end
@@ -13,6 +13,7 @@ class AuthorizationController < ApplicationController
     }
     session[:tokens] = @tokens
     session[:char_id] = get_char_id
+    session[:corp] = get_corp
 
     redirect_to '/mails/new'
   end

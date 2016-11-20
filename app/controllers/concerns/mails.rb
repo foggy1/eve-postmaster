@@ -12,7 +12,10 @@ module Mails
   end
 
   def scrub_contacts(raw_contacts)
-    raw_contacts.body["items"].map { |item| { name: item["character"]["name"], id: item["character"]["id_str"], standing: item["standing"] } if item["character"] }.select { |item| item }
+    raw_contacts.body["items"].map { |item| { name: item["character"]["name"],
+                                              corp: item["character"]["corporation"]["name"], 
+                                              id: item["character"]["id_str"], 
+                                              standing: item["standing"] } if item["character"] }.select { |item| item }
   end
 
 end

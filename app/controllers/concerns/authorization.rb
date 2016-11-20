@@ -37,6 +37,18 @@ module Authorization
 
     response = Unirest.get "https://login.eveonline.com/oauth/verify",
                 headers:headers
-    return response.body["CharacterID"]
+    response.body["CharacterID"]
+  end
+
+  def get_corp
+    headers = { "User-Agent" => "...",
+                "Authorization" =>  "Bearer #{session[:tokens][:access_token]}",
+                "Host" => "login.eveonline.com"
+    }
+
+
+    response = Unirest.get "https://crest-tq.eveonline.com/characters/#{session[:char_id]}/",
+               headers:headers
+    response.body["corporation"]["name"]
   end
 end
