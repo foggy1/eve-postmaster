@@ -51,7 +51,7 @@ class MailForm extends React.Component {
     // Move Submit listener down this component to allow App to handle delegation
     return(
         <div className="col-md-6">
-          <h1 class="h1 text-center">New Mail</h1>
+          <h1 className="h1 text-center">New Mail</h1>
 
           <form ref="newMailForm" onSubmit={this.getIDs}>
             <div className="form-group">

@@ -14,7 +14,7 @@ class Contact extends React.Component {
   }
 
   componentWillMount() {
-    this.colorify();
+    if (this.props.data.status != "list-group-item-success") {this.colorify()}
   }
 
   componentWillReceiveProps(nextProps) {

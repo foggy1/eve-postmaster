@@ -4,8 +4,8 @@ module Authorization
     base_url = 'https://login.eveonline.com/oauth/authorize/?'
     params = {
       response_type: 'code',
-      # redirect_uri: 'https://eve-postmaster.herokuapp.com/callback',
-      redirect_uri: 'http://localhost:3000/callback',
+      redirect_uri: 'https://eve-postmaster.herokuapp.com/callback',
+      # redirect_uri: 'http://localhost:3000/callback',
       client_id: Rails.application.secrets.eve_client_id,
       scope: 'characterContactsRead remoteClientUI',
       state: 'idk123'
@@ -37,6 +37,18 @@ module Authorization
 
     response = Unirest.get "https://login.eveonline.com/oauth/verify",
                 headers:headers
-    return response.body["CharacterID"]
+    response.body["CharacterID"]
+  end
+
+  def get_corp
+    headers = { "User-Agent" => "...",
+                "Authorization" =>  "Bearer #{session[:tokens][:access_token]}",
+                "Host" => "login.eveonline.com"
+    }
+
+
+    response = Unirest.get "https://crest-tq.eveonline.com/characters/#{session[:char_id]}/",
+               headers:headers
+    response.body["corporation"]["name"]
   end
 end
