@@ -5,10 +5,15 @@ class App extends React.Component {
       contacts: [],
       recipients: [],
       remove: "",
-      submitted: false
+      submitted: false,
+      contactTabs: {"All Contacts": "active",
+                    "Friendly": "",
+                    "Corp": ""}
     };
-    this.changeRecip = this.changeRecip.bind(this)
-    this.handleContacts = this.handleContacts.bind(this)
+    this.changeRecip = this.changeRecip.bind(this);
+    this.handleContacts = this.handleContacts.bind(this);
+    this.filterContacts = this.filterContacts.bind(this);
+    this.updateTab = this.updateTab.bind(this);
   }
 
   changeRecip(recipient) {
@@ -34,6 +39,26 @@ class App extends React.Component {
     this.setState({recipients: []}, this.setState({submitted: bool}))
   }
 
+  filterContacts(newTab) {
+    this.updateTab(newTab);
+    if (newTab === "Friendly") {
+      this.setState({contacts: this.props.contacts.filter(contact => contact.standing > 0)})
+    } else if (newTab === "Corp") {
+      this.setState({contacts: this.props.contacts.filter(contact => contact.corp === this.props.corp)})
+    } else if (newTab === "All Contacts") {
+      this.setState({contacts: this.props.contacts})
+    }
+  }
+
+  updateTab(newTab) {
+    tabDup = this.state.contactTabs;
+    for (var key in tabDup) {
+      tabDup[key] = ""; 
+    }
+    tabDup[newTab] = "active"
+    this.setState({contactTabs: tabDup})
+  }
+
   componentDidMount() {
     if (this.props.isAuthorized) {
       localStorage.access_token = this.props.tokens.access_token;
@@ -46,7 +71,7 @@ class App extends React.Component {
     return(
       <div className="row">
         <MailForm data={this.state.recipients} submitDone={this.handleContacts}/>
-        <ContactList data={this.state.contacts} updateTo={this.changeRecip} submitStatus={this.state.submitted} />
+        <ContactList data={this.state.contacts} updateTo={this.changeRecip} submitStatus={this.state.submitted} filter={this.filterContacts} tabs={this.state.contactTabs} />
       </div>
       )
   }
