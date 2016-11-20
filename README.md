@@ -8,7 +8,7 @@
 
 ## Desired Features
 * ~~Contact list~~
-* Filter contact list (by standing or corp)
+* ~~Filter contact list (by standing or corp)~~
 * Corp and Alliance mail shortcut
 * Mailing list
 
