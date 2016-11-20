@@ -41,7 +41,11 @@ class App extends React.Component {
 
   filterContacts(newTab) {
     this.updateTab(newTab);
-
+    if (newTab === "Friendly") {
+      this.setState({contacts: this.props.contacts.filter(contact => contact.standing > 0)})
+    } else if (newTab === "All Contacts") {
+      this.setState({contacts: this.props.contacts})
+    }
   }
 
   updateTab(newTab) {
